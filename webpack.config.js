@@ -3,7 +3,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const VENDOR_LIBS = [
-  'react', 'react-dom', 'react-redux', 'redux',
+  'react', 'react-dom', 'react-redux', 'redux'
 ];
 
 module.exports = {
@@ -37,9 +37,9 @@ module.exports = {
             loader: 'url-loader',
             options: { limit: 40000 },
           },
-          'image-webpack-loader',
+          'image-webpack-loader'
         ],
-      },
+      }
     ],
   },
   plugins: [
@@ -51,6 +51,6 @@ module.exports = {
     }),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
-    }),
+    })
   ],
 };
