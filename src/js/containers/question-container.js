@@ -11,6 +11,7 @@ class Question extends Component {
     super(props);
     this.clickHandler = this.clickHandler.bind(this);
     this.renderAnswers = this.renderAnswers.bind(this);
+    this.renderResponse = this.renderResponse.bind(this);
   }
 
   componentDidMount() {
@@ -18,42 +19,66 @@ class Question extends Component {
   }
 
   clickHandler(e) {
-    if (e.target.className === 'answer') {
-      // alert(`clicked ${e.target.innerText}`);
+    // console.dir(e.target);
+    if (e.target.tagName === 'LI') {
       const currentCountry = this.props.question.country;
       this.props.checkAnswer(currentCountry, e.target.innerText);
+    } else {
+      this.props.getQuestions();
     }
   }
 
   renderAnswers() {
     if (this.props.question.answers) {
-      return this.props.question.answers.map(city => (
-        <li // eslint-disable-line jsx-a11y/no-noninteractive-element-interactions
+      // console.log('answer?', this.props.answer);
+      return this.props.question.answers.map((city) => {
+        let correctOrIncorrect = '';
+        if (this.props.answer.userAnswer === city) {
+          if (this.props.answer.correct) {
+            correctOrIncorrect = 'correct';
+          } else {
+            correctOrIncorrect = 'incorrect';
+          }
+        } else if (this.props.answer.correctAnswer === city) {
+          correctOrIncorrect = 'correct';
+        }
+        return (<li // eslint-disable-line jsx-a11y/no-noninteractive-element-interactions
           key={city}
-          className="answer"
+          className={`answer ${correctOrIncorrect}`}
           onClick={this.clickHandler}
         >
           {city}
-        </li>
-      ));
+        </li>);
+      });
+    }
+    return '';
+  }
+
+  renderResponse() {
+    const correct = this.props.answer.correct;
+    if (correct === true) {
+      return 'CORRECT!';
+    } else if (correct === false) {
+      return 'INCORRECT!';
     }
     return '';
   }
 
   render() {
-    console.log(this.props.question);
-    // const capital = Object.keys(this.props.questions)[0];
     return (
       <div className="question">
         <h3>What is the capital of {this.props.question.country}?</h3>
         <h4>Select the answer from the list below:</h4>
         <ol>{this.renderAnswers()}</ol>
+        <p>{this.renderResponse()}</p>
+        <button onClick={this.clickHandler}>New Question</button>
       </div>
     );
   }
 }
 
 Question.propTypes = {
+  answer: PropTypes.object,
   checkAnswer: PropTypes.func,
   getQuestions: PropTypes.func,
   question: PropTypes.object,
@@ -62,6 +87,7 @@ Question.propTypes = {
 function mapStateToProps(state) {
   return {
     question: state.question,
+    answer: state.answer,
   };
 }
 
