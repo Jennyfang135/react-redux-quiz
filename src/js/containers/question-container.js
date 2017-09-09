@@ -9,12 +9,27 @@ class Question extends Component {
     this.props.getQuestions();
   }
 
+  renderAnswers() {
+    if (this.props.question.answers) {
+      return this.props.question.answers.map(city => (
+        <li
+          key={city}
+        >
+          {city}
+        </li>
+      ));
+    }
+    return '';
+  }
+
   render() {
-    console.log(this.props.questions);
-    const capital = Object.keys(this.props.questions)[0];
+    console.log(this.props.question);
+    // const capital = Object.keys(this.props.questions)[0];
     return (
       <div className="question">
-        <h3>What is the capital of {capital}?</h3>
+        <h3>What is the capital of {this.props.question.country}?</h3>
+        <h3>Select the answer from the list below:</h3>
+        <ol>{this.renderAnswers()}</ol>
       </div>
     );
   }
@@ -22,12 +37,12 @@ class Question extends Component {
 
 Question.propTypes = {
   getQuestions: PropTypes.func,
-  questions: PropTypes.object,
+  question: PropTypes.object,
 };
 
 function mapStateToProps(state) {
   return {
-    questions: state.questions,
+    question: state.question,
   };
 }
 
