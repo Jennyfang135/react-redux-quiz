@@ -7,6 +7,8 @@
     "clean": "rimraf dist",
     "build": "NODE_ENV=production npm run clean && webpack -p",
     "start": "webpack-dev-server",
+    "deploy": "serverless deploy -v --stage dev",
+    "update": "serverless deploy function -f funcOne --stage dev",
     "test": "test"
   },
   "keywords": [
@@ -32,6 +34,7 @@
     "babel-loader": "^7.1.2",
     "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-env": "^1.6.0",
+    "babel-preset-node6": "^11.0.0",
     "babel-preset-react": "^6.24.1",
     "css-loader": "^0.28.7",
     "eslint": "^4.6.1",
@@ -45,6 +48,9 @@
     "node-sass": "^4.5.3",
     "rimraf": "^2.6.1",
     "sass-loader": "^6.0.6",
+    "serverless": "^1.21.1",
+    "serverless-plugin-optimize": "^3.0.3-rc.1",
+    "serverless-plugin-scripts": "^1.0.2",
     "style-loader": "^0.18.2",
     "url-loader": "^0.5.9",
     "webpack": "^3.5.6",

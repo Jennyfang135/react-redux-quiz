@@ -46,7 +46,7 @@ class Question extends Component {
     return (
       <div className="question">
         <h3>What is the capital of {this.props.question.country}?</h3>
-        <h3>Select the answer from the list below:</h3>
+        <h4>Select the answer from the list below:</h4>
         <ol>{this.renderAnswers()}</ol>
       </div>
     );

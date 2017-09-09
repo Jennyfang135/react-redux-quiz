@@ -1,0 +1,58 @@
+service: react-redux-quiz
+
+provider:
+  name: aws
+  runtime: nodejs6.10
+  stage: ${opt:stage, self:custom.defaultStage}
+  profile: ${self:custom.profiles.${self:provider.stage}}
+  region: ${self:custom.regions.${self:provider.stage}}
+  role: ${self:custom.roles.${self:provider.stage}}
+  memorySize: 256
+  timeout: 8
+  versionFunctions: true
+
+plugins:
+  - serverless-plugin-optimize
+  - serverless-plugin-scripts
+
+package:
+  individually: true
+
+functions:
+  funcOne:
+    handler: server/index.handler
+    name: capital-cities-${self:provider.stage}
+    description: Backend for capital cities quiz
+    events:
+      - http:
+          path: question
+          method: get
+          cors: true
+      - http:
+          path: answer
+          method: post
+          cors: true
+
+custom:
+  defaultStage: dev
+  profiles:
+    dev: matt
+  regions:
+    dev: eu-west-2
+  roles:
+    dev: arn:aws:iam::356644845788:role/lambda_basic_execution
+  optimize:
+    debug: false # set to true to keep _optimize folder
+    minify: false # only minify for production
+    global: false # minify imported node modules - significantly increases build time
+    presets: ['babel-preset-node6']
+  scripts:
+    hooks: # any other custom scripts can be run at any stage of the deployment process
+      'deploy:cleanup': echo cleanup
+      'deploy:initialize': echo initialize
+      'deploy:setupProviderConfiguration': echo setupProviderConfiguration
+      'deploy:createDeploymentArtifacts': echo createDeploymentArtifacts
+      'deploy:compileFunctions': echo compileFunctions
+      'deploy:compileEvents': echo compileEvents
+      'deploy:deploy': echo deploy
+      'deploy:function:deploy': echo function:deploy

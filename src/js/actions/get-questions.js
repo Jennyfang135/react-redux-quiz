@@ -2,7 +2,7 @@ import axios from 'axios';
 
 export const GET_QUESTIONS = 'GET_QUESTIONS';
 
-const URL = 'https://api.myjson.com/bins/12kmeh';
+const URL = 'https://vtwd20wsbe.execute-api.eu-west-2.amazonaws.com/dev/question';
 
 export function getQuestions() {
   const request = axios.get(URL)
