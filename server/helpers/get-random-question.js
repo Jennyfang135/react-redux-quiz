@@ -3,7 +3,7 @@ import _ from 'lodash';
 import countriesWithCapitals from '../data/countries-with-capitals.json';
 import cities from '../data/cities.json';
 
-export default function () {
+export default function getRandomQuestion() {
   const countries = Object.keys(countriesWithCapitals);
   const randomIdx = Math.floor(Math.random() * countries.length);
   const country = countries[randomIdx];

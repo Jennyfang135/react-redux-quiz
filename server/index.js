@@ -1,11 +1,17 @@
+import checkAnswer from './helpers/check-answer';
 import getRandomQuestion from './helpers/get-random-question';
 
 exports.handler = function (event, context, callback) {
-  console.log('EVENT', event);
+  console.log('EVENT', JSON.stringify(event));
 
   let body;
   if (event.resource === '/question') {
     body = getRandomQuestion();
+  } else if (event.resource === '/answer') {
+    const bodyObj = JSON.parse(event.body);
+    const country = bodyObj.country;
+    const userAnswer = bodyObj.city;
+    body = checkAnswer(country, userAnswer);
   }
 
   const response = {
@@ -17,7 +23,7 @@ exports.handler = function (event, context, callback) {
     body: JSON.stringify(body),
   };
 
-  console.log('RESPONSE', response);
+  console.log('RESPONSE', JSON.stringify(response));
 
   callback(null, response);
 };
