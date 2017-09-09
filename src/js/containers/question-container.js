@@ -19,7 +19,6 @@ class Question extends Component {
   }
 
   clickHandler(e) {
-    // console.dir(e.target);
     if (e.target.tagName === 'LI') {
       const currentCountry = this.props.question.country;
       this.props.checkAnswer(currentCountry, e.target.innerText);
@@ -30,7 +29,6 @@ class Question extends Component {
 
   renderAnswers() {
     if (this.props.question.answers) {
-      // console.log('answer?', this.props.answer);
       return this.props.question.answers.map((city) => {
         let correctOrIncorrect = '';
         if (this.props.answer.userAnswer === city) {
@@ -66,7 +64,7 @@ class Question extends Component {
 
   render() {
     return (
-      <div className="question">
+      <div className="main">
         <h3>What is the capital of {this.props.question.country}?</h3>
         <h4>Select the answer from the list below:</h4>
         <ol>{this.renderAnswers()}</ol>

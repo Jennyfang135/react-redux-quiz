@@ -7,6 +7,7 @@ export default function (state = {}, action) {
       return action.payload.data;
     }
     case GET_QUESTIONS: {
+      // Reset answer state when user requests a new question.
       return {};
     }
     default: {

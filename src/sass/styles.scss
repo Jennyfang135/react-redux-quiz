@@ -1,8 +1,4 @@
-.correct {
-  color: green;
-  font-weight: bold;
-}
+@import './utils/variables';
+@import './utils/global';
 
-.incorrect {
-  color: red;
-}
+@import './layout/_app';

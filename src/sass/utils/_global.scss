@@ -1,0 +1,20 @@
+@import url('https://fonts.googleapis.com/css?family=Source+Serif+Pro:400,700');
+
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    font-family: 'Source Serif Pro', serif;
+    color: $black;
+    height: 100%;
+}
+
+h1, h2, h3, p {
+    margin: 0;
+}
+
+#app, .wrapper {
+    height: 100%;
+    background-color: #caceb5;
+}
