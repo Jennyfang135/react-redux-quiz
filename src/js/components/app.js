@@ -6,7 +6,6 @@ const App = () => (
   <div className="wrapper">
     <h1 className="title">Capital Cities Quiz</h1>
     <div className="main">
-      This is the main section.
       <Question />
     </div>
     <footer className="footer">
