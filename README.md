@@ -18,10 +18,10 @@ Lambda function is deployed separately using the serverless framework with ````n
 * Cover all countries/capitals, currently only countries A - F.
 * Integrate with Google Maps API to display location of cities.
 * Maybe add some kind of timer.
-* Keep track of best score in local storage. Also currently user can 'cheat' by clicking the correct answer after it is revealed.
-* Don't repeat questions already seen - currently there is the possibility of seeing same question twice in a row.
-* Maybe some pictures.
+* Keep track of best score in local storage.
+* Don't repeat questions already seen - currently there is the unlikely possibility of seeing same question twice in a row.
+* Maybe add some pictures.
 * Refactor using GraphQL.
 * Different game modes e.g. text input instead of multiple choice.
 * Currently fairly minimal styling, especially need to add more media queries for responsiveness. Only tested on 15inch laptop and iPhone 6S screen.
-* Unit tests.
+* Unit tests!

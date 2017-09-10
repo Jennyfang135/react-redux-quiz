@@ -30,11 +30,12 @@ class Question extends Component {
   }
 
   clickHandler(e) {
-    if (e.target.tagName === 'LI') {
+    // Option from list is clicked - other checks are to stop
+    // user from cheating by clicking correct answer after reveal.
+    if (e.target.tagName === 'LI' && this.props.score.justUpdated === false && this.props.answer.correct !== false) {
       const currentCountry = this.props.question.country;
-      this.props.checkAnswer(currentCountry, e.target.innerText);
-    } else {
-      // Button is clicked.
+      this.props.checkAnswer(currentCountry, e.target.id);
+    } else if (e.target.tagName === 'BUTTON') {
       this.props.getQuestions();
       this.props.updateScore({
         score: this.props.score.score,
@@ -46,19 +47,20 @@ class Question extends Component {
   renderAnswers() {
     if (this.props.question.answers) {
       return this.props.question.answers.map((city) => {
-        let correctOrIncorrect = '';
+        let questionStatus = '';
         if (this.props.answer.userAnswer === city) {
           if (this.props.answer.correct) {
-            correctOrIncorrect = 'correct';
+            questionStatus = 'correct';
           } else {
-            correctOrIncorrect = 'incorrect';
+            questionStatus = 'incorrect';
           }
         } else if (this.props.answer.correctAnswer === city) {
-          correctOrIncorrect = 'correct';
+          questionStatus = 'correct';
         }
         return (<li // eslint-disable-line jsx-a11y/no-noninteractive-element-interactions
           key={city}
-          className={`answer ${correctOrIncorrect}`}
+          id={city}
+          className={`answer ${questionStatus}`}
           onClick={this.clickHandler}
         >
           {city}
