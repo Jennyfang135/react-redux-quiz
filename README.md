@@ -22,3 +22,4 @@ Lambda function is deployed separately using the serverless framework with ````n
 * Maybe some pictures.
 * Refactor using GraphQL.
 * Different game modes e.g. text input instead of multiple choice.
+* Currently fairly minimal styling, especially need to add more media queries for responsiveness. Only tested on 15inch laptop and iPhone 6S screen.

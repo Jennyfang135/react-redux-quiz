@@ -2,13 +2,19 @@
     text-align: center;
     height: 50px;
     line-height: 50px;
+    text-decoration: underline;
+    @media (min-width: 1024px) {
+      height: 100px;
+      line-height: 100px;
+    }
 }
 
 .main {
     // Subtract height of title and footer (can't use sass variables with calc!)
     height: calc(100% - 80px);
-    width: 100%;
+    width: 95%;
     margin: 0 auto;
+    padding-top: 10px;
     position: relative;
     border: {
         left: 20px solid transparent;
@@ -17,23 +23,55 @@
     display: flex;
     flex-flow: column wrap;
 
-    button {
-      margin: 0 auto;
-      text-align: center;
-      width: 200px;
+    ul {
+      list-style-type: none;
+      padding: 0;
+
+      li {
+        padding: 10px;
+        margin: 5px;
+        border: 2px solid $black;
+        cursor: pointer;
+        background-color: #fff;
+        font-size: 1.2em;
+        @media (min-width: 1024px) {
+          font-size: 1.5em;
+        }
+      }
     }
 
-    li {
-      cursor: pointer;
+    .response {
+      height: 40px;
+      font-size: 1.2em;
+      font-weight: bold;
+      @media (min-width: 1024px) {
+        font-size: 1.5em;
+        height: 100px;
+      }
     }
 
     .correct {
       color: green;
+      background-color: #d2f7c3;
       font-weight: bold;
     }
 
     .incorrect {
       color: red;
+      background-color: #f9ab9f;
+    }
+
+    button {
+      margin: 0 auto;
+      text-align: center;
+      width: 200px;
+      padding: 10px;
+      cursor: pointer;
+    }
+
+    @media (min-width: 1024px) {
+      height: calc(100% - 130px);
+      width: 60%;
     }
 }
 

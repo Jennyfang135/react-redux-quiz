@@ -65,10 +65,10 @@ class Question extends Component {
   render() {
     return (
       <div className="main">
-        <h3>What is the capital of {this.props.question.country}?</h3>
-        <h4>Select the answer from the list below:</h4>
-        <ol>{this.renderAnswers()}</ol>
-        <p>{this.renderResponse()}</p>
+        <h2>What is the capital of {this.props.question.country}?</h2>
+        <h3>Select the answer from the list below:</h3>
+        <ul>{this.renderAnswers()}</ul>
+        <p className="response">{this.renderResponse()}</p>
         <button onClick={this.clickHandler}>New Question</button>
       </div>
     );
