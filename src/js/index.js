@@ -6,7 +6,8 @@ import promise from 'redux-promise';
 
 import 'normalize.css';
 import '../sass/styles.scss';
-import '../assets/favicon.ico';
+// import '../assets/favicon.ico';
+import '../favicons/favicons';
 
 import App from './components/app';
 import reducers from './reducers';
